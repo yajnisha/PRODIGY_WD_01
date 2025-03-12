@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Landing Page</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background 0.3s ease;
+            padding: 15px 20px;
+        }
+
+        header.scrolled {
+            background: #ff5733;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: #ffcc00;
+            color: #333;
+            border-radius: 5px;
+        }
+
+        .nav-links a.active {
+            color: #ffeb3b;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+        .section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .section:nth-child(even) {
+            background: #fff;
+        }
+
+        .section:nth-child(odd) {
+            background: #f4f4f4;
+        }
+
+        .section h2 {
+            font-size: 36px;
+            color: #6a11cb;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+    </style>
+
+</head>
+<body>
+    <header id="navbar">
+        <nav class="navbar">
+            <a href="#" class="logo">MyBrand</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero" id="home">
+        <div>
+            <h1>Welcome to My Landing Page</h1>
+            <p>Innovative Solutions for a Digital World.</p>
+        </div>
+    </section>
+    <section class="section" id="about">
+        <h2>About Us</h2>
+        <p>We are a team of creative professionals dedicated to building innovative and engaging web experiences. Our mission is to bring ideas to life through cutting-edge design and technology.</p>
+    </section>
+
+    <section class="section" id="services">
+        <h2>Our Services</h2>
+        <p>From website design to full-stack development, we offer solutions that drive success. Whether it's branding, e-commerce, or digital marketing, we've got you covered.</p>
+    </section>
+
+    <section class="section" id="portfolio">
+        <h2>Portfolio</h2>
+        <p>Explore our latest projects that showcase creativity, efficiency, and technology at their best.</p>
+    </section>
+
+    <section class="section" id="contact">
+        <h2>Contact Us</h2>
+        <p>Let's collaborate and create something amazing! Reach out to us for business inquiries and collaborations.</p>
+    </section>
+    <div class="footer">
+        <p>&copy; 2025 MyBrand. All Rights Reserved.</p>
+    </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            let navbar = document.getElementById("navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        function changeActiveLink() {
+            let fromTop = window.scrollY + 100;
+
+            navLinks.forEach(link => {
+                let section = document.querySelector(link.getAttribute("href"));
+                
+                if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+                    navLinks.forEach(link => link.classList.remove("active"));
+                    link.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", changeActiveLink);
+    </script>
+
+</body>
+</html>
